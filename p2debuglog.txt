@@ -1,0 +1,171 @@
+ gcc -g p1original.c -lm  
+ gdb a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x8f4: file p1original.c, line 32.
+(gdb) r
+Starting program: /home/runner/pps-test2/a.out 
+warning: Error disabling address space randomization: Operation not permitted
+
+Breakpoint 1, main () at p1original.c:32
+32    a=input();
+(gdb) s
+input () at p1original.c:10
+10  {
+(gdb) n
+12    printf("Enter the coordinates");
+(gdb) n
+13    scanf("%d%d",&a.x,&a.y);
+(gdb) n
+Enter the coordinates4
+5
+14    return a;
+(gdb) p a
+$1 = {x = 4, y = 5}
+(gdb) n
+15  }
+(gdb) n
+main () at p1original.c:33
+33    b=input();
+(gdb) s
+input () at p1original.c:10
+10  {
+(gdb) n
+12    printf("Enter the coordinates");
+(gdb) n
+13    scanf("%d%d",&a.x,&a.y);
+(gdb) n
+Enter the coordinates4
+4
+14    return a;
+(gdb) p a
+$2 = {x = 4, y = 4}
+(gdb) n
+15  }
+(gdb) n
+main () at p1original.c:34
+34    result=distance(a,b);
+(gdb) s
+distance (a=..., b=...) at p1original.c:20
+20    q=pow((a.x-b.x),2)+pow((a.y-b.y),2);
+(gdb) n
+ gcc -g p2original.c -lm  
+ gdb a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x9ce: file p2original.c, line 38.
+(gdb) r
+Starting program: /home/runner/pps-test2/a.out 
+warning: Error disabling address space randomization: Operation not permitted
+
+Breakpoint 1, main () at p2original.c:38
+38    radius=input_radius();
+(gdb) s
+input_radius () at p2original.c:5
+5   {
+(gdb) n
+7     printf("Enter the stomach radius of the camel (in m): \n");
+(gdb) n
+Enter the stomach radius of the camel (in m): 
+8     scanf("%f",&radius);
+(gdb) n
+1.5
+9     return radius;
+(gdb) p radius
+$1 = 1.5
+(gdb) n
+10  }
+(gdb) n
+main () at p2original.c:39
+39    length=input_length();
+(gdb) s
+input_length () at p2original.c:19
+19  {
+(gdb) n
+21    printf("Enter the length of the camel (in m): \n");
+(gdb) n
+Enter the length of the camel (in m): 
+22    scanf("%f",&length);
+(gdb) n
+2
+23    return length;
+(gdb) p length
+$2 = 2
+(gdb) n
+24  }
+(gdb) n
+main () at p2original.c:40
+40    height=input_height();
+(gdb) s
+input_height () at p2original.c:12
+12  {
+(gdb) n
+14    printf("Enter the height of the camel (in m): \n");
+(gdb) n
+Enter the height of the camel (in m): 
+15    scanf("%f",&height);
+(gdb) n
+1.25
+16    return height;
+(gdb) p height
+$3 = 1.25
+(gdb) n
+17  }
+(gdb) n
+main () at p2original.c:41
+41    weight=find_weight(radius,height,length);
+(gdb) s
+find_weight (radius=1.5, height=1.25, length=2) at p2original.c:28
+28    c= M_PI * pow(radius,3)* sqrt(height*length);
+(gdb) p c
+$4 = -3.58033162e+10
+(gdb) n
+29    return c;
+(gdb) p c
+$5 = 16.7646179
+(gdb) n
+30  }
+(gdb) n
+main () at p2original.c:42
+42    output(radius,height,length,weight);
+(gdb) s
+output (radius=1.5, height=1.25, length=2, weight=16.7646179)
+    at p2original.c:33
+33    printf("Weight of camel of radius: %f, height: %f, raduis of stomache: %f is: %f Kg",radius,height,length,weight);
+(gdb) n
+34  }
+(gdb) n
+main () at p2original.c:43
+43    return 0;
+(gdb) c
+Continuing.
+Weight of camel of radius: 1.500000, height: 1.250000, raduis of stomache: 2.000000 is: 16.764618 Kg[Inferior 1 (process 142) exited normally]
+(gdb) 
