@@ -1,0 +1,68 @@
+gdb a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x8c5: file p4original.c, line 38.
+(gdb) r
+Starting program: /home/runner/pps-test2-amanfaraz/a.out 
+warning: Error disabling address space randomization: Operation not permitted
+
+Breakpoint 1, main () at p4original.c:38
+38    c=input();
+(gdb) s
+input () at p4original.c:10
+10  {
+(gdb) n
+12    printf("Enter Camel's Stomache radius (in m): \n");
+(gdb) n
+Enter Camel's Stomache radius (in m): 
+13    scanf("%f",&a.radius);
+(gdb) n
+2
+14    printf("Enter the height (in m): \n");
+(gdb) n
+Enter the height (in m): 
+15    scanf("%f",&a.height);
+(gdb) n
+3
+16    printf("Enter the length of the camel: \n");
+(gdb) n
+Enter the length of the camel: 
+17    scanf("%f",&a.length);
+(gdb) n
+4
+18    return a;
+(gdb) p a
+$1 = {radius = 2, height = 3, length = 4}
+(gdb) n
+19  }
+(gdb) n
+main () at p4original.c:39
+39    find_condition(c);
+(gdb) s
+find_condition (a=...) at p4original.c:22
+22    if (a.radius<a.height && a.radius<a.length)
+(gdb) n
+24      printf("Camel is SICK");
+(gdb) n
+34  }
+(gdb) n
+main () at p4original.c:40
+40    return 0;
+(gdb) c
+Continuing.
+Camel is SICK[Inferior 1 (process 1432) exited normally]
+(gdb) 
